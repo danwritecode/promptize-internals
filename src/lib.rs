@@ -8,7 +8,7 @@ pub trait Promptize<T>: Send {
         self
     ) -> anyhow::Result<(std::vec::Vec<std::vec::Vec<tiktoken_rs::ChatCompletionRequestMessage>>, T)>;
 
-    fn get_model(&self) -> Option<String>;
+    fn get_model(&self) -> String;
 }
 
 macro_rules! starts_with_any {
