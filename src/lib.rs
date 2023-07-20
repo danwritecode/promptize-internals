@@ -11,6 +11,12 @@ pub trait Promptize<T>: Send {
     fn get_model(&self) -> String;
 }
 
+#[derive(Debug, Default, Clone, PartialEq, Eq)]
+pub struct ChatCompletionRequestMessage {
+    pub role: String,
+    pub content: Option<String>,
+}
+
 macro_rules! starts_with_any {
     ($str:expr, $($prefix:expr),* $(,)?) => {
         false $(|| $str.starts_with($prefix))*
