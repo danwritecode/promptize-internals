@@ -2,19 +2,20 @@ pub trait Promptize<T>: Send {
     fn reassemble(
         &self, 
         chunk_summary: String, 
-    ) -> anyhow::Result<(std::vec::Vec<std::vec::Vec<tiktoken_rs::ChatCompletionRequestMessage>>, T)>;
+    ) -> anyhow::Result<(std::vec::Vec<std::vec::Vec<ChatCompletionRequest>>, T)>;
 
     fn build_prompt(
         self
-    ) -> anyhow::Result<(std::vec::Vec<std::vec::Vec<tiktoken_rs::ChatCompletionRequestMessage>>, T)>;
+    ) -> anyhow::Result<(std::vec::Vec<std::vec::Vec<ChatCompletionRequest>>, T)>;
 
     fn get_model(&self) -> String;
 }
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
-pub struct ChatCompletionRequestMessage {
+pub struct ChatCompletionRequest {
     pub role: String,
-    pub content: Option<String>,
+    pub content: String,
+    pub name: Option<String>
 }
 
 macro_rules! starts_with_any {
